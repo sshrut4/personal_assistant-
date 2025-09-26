@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Your Name — Portfolio</title>
+  <meta name="description" content="Portfolio of Your Name — developer, projects, skills, contact." />
+
+  <!-- Simple reset + modern styles -->
+  <style>
+    :root{
+      --bg:#f7fafc;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --accent-1: #4f46e5; /* indigo */
+      --accent-2: #06b6d4; /* teal */
+      --glass: rgba(255,255,255,0.7);
+      --radius: 12px;
+      --max-width:1200px;
+      --shadow: 0 6px 18px rgba(16,24,40,0.08);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Helvetica Neue", monospace;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: linear-gradient(180deg, #eef2ff 0%, var(--bg) 100%);
+      color:#0f172a;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+
+    .container{max-width:var(--max-width);margin:0 auto;padding:0 20px;}
+
+    /* Header */
+    header{
+      backdrop-filter: blur(6px);
+      background: rgba(255,255,255,0.55);
+      border-bottom: 1px solid rgba(15,23,42,0.04);
+      position:sticky; top:0; z-index:60;
+    }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+      padding:18px 0;
+    }
+    .brand{font-weight:700; font-size:20px; letter-spacing:0.2px}
+    nav a{color:var(--muted); text-decoration:none; margin-left:18px; font-weight:600; font-size:14px}
+    nav a:hover{color:var(--accent-1)}
+
+    /* Hero */
+    .hero{
+      padding:64px 0;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:28px;
+      align-items:center;
+      text-align:center;
+    }
+    .hero-inner{max-width:900px;margin:0 auto}
+    .greeting{font-size:40px; font-weight:800; color:#fff; margin:0 0 12px}
+    .sub{font-size:18px;color:rgba(255,255,255,0.92); margin:0 0 18px}
+    .hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:10px;
+      background:var(--card); color:var(--accent-1); font-weight:700; box-shadow:var(--shadow);
+      border:none; cursor:pointer; text-decoration:none;
+    }
+    .btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.12);font-weight:600}
+
+    /* Sections */
+    section{padding:64px 0}
+    h2{font-size:26px;margin:0 0 18px}
+    p.lead{color:var(--muted);margin:0 0 10px;font-size:16px}
+
+    /* Cards / Grids */
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px}
+    .skill{
+      background:var(--card); padding:14px; border-radius:12px; text-align:center; box-shadow:var(--shadow);
+      font-weight:700;
+    }
+
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+    .project{
+      background:linear-gradient(180deg,#fff,#fbfdff);
+      border-radius:14px;padding:18px; box-shadow:var(--shadow); border:1px solid rgba(15,23,42,0.03);
+      display:flex;flex-direction:column;gap:8px;
+    }
+    .project h3{margin:0;font-size:18px}
+    .project p{margin:0;color:var(--muted);font-size:14px}
+    .project .links{margin-top:auto;display:flex;gap:10px}
+
+    /* Contact */
+    .socials{display:flex;gap:12px;justify-content:center;align-items:center}
+    .icon-btn{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:var(--card);box-shadow:var(--shadow);border:1px solid rgba(15,23,42,0.03)}
+
+    /* Footer */
+    footer{padding:22px 0;text-align:center;color:var(--muted);font-size:14px;border-top:1px solid rgba(15,23,42,0.04);background:transparent}
+
+    /* Utilities */
+    .muted{color:var(--muted)}
+    .center{text-align:center}
+
+    /* Responsive layout */
+    @media(min-width:900px){
+      .hero{grid-template-columns: 1fr; text-align:left}
+      .hero-inner{display:flex;align-items:center;gap:28px}
+      .hero-card{flex:1}
+      .hero-illustration{flex:1;display:flex;justify-content:center}
+      .greeting{font-size:54px}
+      .sub{font-size:18px; max-width:680px}
+    }
+
+    /* subtle entrance */
+    .reveal{opacity:0; transform:translateY(10px); transition:all 600ms cubic-bezier(.2,.9,.3,1)}
+    .reveal.show{opacity:1; transform:none}
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container nav-inner" role="navigation" aria-label="Main Navigation">
+      <div class="brand">Your Name</div>
+      <nav aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main>
+    <section class="hero" style="background: linear-gradient(90deg, var(--accent-1), var(--accent-2)); border-bottom-left-radius:24px; border-bottom-right-radius:24px;">
+      <div class="container hero-inner">
+        <div class="hero-card reveal" id="heroCard">
+          <h1 class="greeting">Hi, I'm <span style="text-decoration: underline 3px rgba(255,255,255,0.12)">Your Name</span> 👋</h1>
+          <p class="sub">A passionate developer building creative and impactful solutions. I work on Python, Django, DevOps, and AI projects that solve real problems.</p>
+          <div class="hero-cta">
+            <!-- Update href to point to your resume file or cloud link -->
+            <a class="btn" id="downloadResume" href="resume.pdf" download="YourName_Resume.pdf" title="Download resume">⬇️ Download Resume</a>
+            <a class="btn ghost" href="#projects">See Projects</a>
+          </div>
+        </div>
+
+        <div class="hero-illustration reveal" id="heroIllustration" aria-hidden="true" style="display:none;">
+          <!-- Optional: put an SVG or headshot here -->
+          <svg width="220" height="220" viewBox="0 0 200 200">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1">
+                <stop offset="0" stop-color="#ffffff" stop-opacity="0.14"/>
+                <stop offset="1" stop-color="#ffffff" stop-opacity="0.06"/>
+              </linearGradient>
+            </defs>
+            <rect x="0" y="0" width="200" height="200" rx="26" fill="url(#g1)"></rect>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="container reveal" style="padding-top:44px;">
+      <h2>About Me</h2>
+      <p class="lead">Short bio: a condensed paragraph about your background, education, and what you enjoy building. Mention years of experience if applicable and any notable achievements (awards, internships, certifications).</p>
+      <p class="muted">Example: I'm a Computer Engineering Diploma graduate who loves building secure systems and learning new AI/ML techniques. I've interned with Creart Solution and built projects using Python, Django and C++.</p>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" style="background:transparent;">
+      <div class="container reveal">
+        <h2>Skills</h2>
+        <p class="lead">Technologies and disciplines I use frequently.</p>
+        <div class="skills-grid" style="margin-top:16px;">
+          <!-- Replace or reorder skills -->
+          <div class="skill">Python</div>
+          <div class="skill">C++</div>
+          <div class="skill">JavaScript</div>
+          <div class="skill">React</div>
+          <div class="skill">Django</div>
+          <div class="skill">AI / ML</div>
+          <div class="skill">SQL / MongoDB</div>
+          <div class="skill">Git & CI/CD</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="container reveal">
+        <h2>Projects</h2>
+        <p class="lead">A selection of projects. Add links to GitHub, live demos, or case studies.</p>
+
+        <div class="projects-grid" style="margin-top:18px;">
+          <!-- Project 1 -->
+          <article class="project" aria-labelledby="p1title">
+            <h3 id="p1title">Encryption / Decryption App</h3>
+            <p>Python GUI implementing RSA, Hill Cipher, Caesar, Playfair, and One-Time Pad. Demonstrates cryptography fundamentals and GUI design.</p>
+            <div class="links">
+              <a class="btn" href="#" aria-label="View project repository">View Repo</a>
+              <a class="btn ghost" href="#" aria-label="Open live demo">Demo</a>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="project" aria-labelledby="p2title">
+            <h3 id="p2title">8085 Microprocessor Mobile App</h3>
+            <p>A mobile application simulating 8085 instructions for teaching and exam prep with interactive visualization.</p>
+            <div class="links">
+              <a class="btn" href="#" aria-label="View project repository">View Repo</a>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="project" aria-labelledby="p3title">
+            <h3 id="p3title">Email Sender (Django)</h3>
+            <p>Django web app for automated email workflows, templating, and SMTP integration.</p>
+            <div class="links">
+              <a class="btn" href="#" aria-label="View project repository">View Repo</a>
+            </div>
+          </article>
+
+          <!-- Add more projects as needed -->
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" style="background:transparent;">
+      <div class="container reveal center">
+        <h2>Get in touch</h2>
+        <p class="lead">Interested in collaborating or hiring me? Let's connect.</p>
+
+        <div style="margin-top:18px;" class="socials" role="list">
+          <!-- Replace hrefs with your links -->
+          <a class="icon-btn" href="mailto:your@email.com" role="listitem" aria-label="Email">
+            <!-- Mail SVG -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M3 5h18v14H3z" stroke="#0f172a" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+              <path d="M21 5l-9 7L3 5" stroke="#0f172a" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+            </svg>
+          </a>
+
+          <a class="icon-btn" href="https://github.com/yourusername" target="_blank" rel="noopener" role="listitem" aria-label="GitHub">
+            <!-- GitHub SVG -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2C7.03 2 3 6.03 3 11c0 4.08 2.64 7.53 6.32 8.75.46.08.63-.2.63-.44 0-.22-.01-.82-.01-1.61-2.57.56-3.11-1.09-3.11-1.09-.42-1.08-1.03-1.37-1.03-1.37-.84-.57.06-.56.06-.56.93.07 1.42.96 1.42.96.83 1.42 2.17 1.01 2.7.77.08-.6.32-1.01.58-1.24-2.05-.23-4.21-1.02-4.21-4.54 0-1.01.36-1.83.95-2.48-.1-.24-.41-1.2.09-2.5 0 0 .77-.25 2.52.95A8.68 8.68 0 0112 6.8c.78.004 1.56.106 2.29.31 1.74-1.2 2.51-.95 2.51-.95.5 1.3.19 2.26.09 2.5.59.65.95 1.47.95 2.48 0 3.53-2.16 4.3-4.22 4.53.33.29.63.86.63 1.74 0 1.26-.01 2.27-.01 2.58 0 .24.17.53.64.44C18.36 18.53 21 15.08 21 11c0-4.97-4.03-9-9-9z" fill="#0f172a"/>
+            </svg>
+          </a>
+
+          <a class="icon-btn" href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener" role="listitem" aria-label="LinkedIn">
+            <!-- LinkedIn SVG -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M16 8a6 6 0 016 6v6h-4v-6a2 2 0 00-4 0v6h-4v-12h4v1.5" stroke="#0f172a" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="2" y="8" width="4" height="12" rx="1" stroke="#0f172a" stroke-width="1.3"/>
+              <circle cx="4" cy="5" r="1.5" fill="#0f172a" />
+            </svg>
+          </a>
+
+          <a class="icon-btn" href="https://yourwebsite.com" target="_blank" rel="noopener" role="listitem" aria-label="Website">
+            <!-- Globe SVG -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" stroke="#0f172a" stroke-width="1.3"/>
+              <path d="M2 12h20M12 2c2 3 2 7 2 10s0 7-2 10" stroke="#0f172a" stroke-width="1.3" stroke-linecap="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Simple contact form (optional) -->
+        <form style="margin-top:22px;max-width:720px;margin-left:auto;margin-right:auto;" onsubmit="event.preventDefault(); alert('Thanks — form disabled in demo. Use mailto or replace with server endpoint.');">
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <input aria-label="Name" required placeholder="Your name" style="flex:1;padding:12px;border-radius:10px;border:1px solid rgba(15,23,42,0.06)" />
+            <input aria-label="Email" required placeholder="Your email" type="email" style="flex:1;padding:12px;border-radius:10px;border:1px solid rgba(15,23,42,0.06)" />
+          </div>
+          <textarea aria-label="Message" placeholder="How can I help?" required style="width:100%;margin-top:10px;padding:12px;border-radius:10px;border:1px solid rgba(15,23,42,0.06);min-height:100px"></textarea>
+          <div style="text-align:center;margin-top:10px">
+            <button type="submit" class="btn">Send Message</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div id="copyright">© <span id="year"></span> Your Name — All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- Minimal JS for small interactions -->
+  <script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Simple reveal on scroll
+    const revealEls = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('show'); obs.unobserve(e.target); }
+      });
+    }, {threshold: 0.12});
+    revealEls.forEach(el => obs.observe(el));
+
+    // Smooth scroll for internal nav links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (ev)=>{
+        const target = document.querySelector(a.getAttribute('href'));
+        if(target){ ev.preventDefault(); target.scrollIntoView({behavior:'smooth', block:'start'}); }
+      });
+    });
+
+    // Helpful tip: If you want the resume download to open a cloud link (Google Drive / Dropbox),
+    // set the downloadResume.href to that URL or remove download attribute for direct open.
+  </script>
+</body>
+</html>
